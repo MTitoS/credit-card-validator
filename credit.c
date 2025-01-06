@@ -1,23 +1,35 @@
 #include <stdio.h>
 #include <string.h>
 
-int reverseCardNumber (char cardNumber[30]);
+void reverseCardNumber(char cardNumber[30], char cardNumberReversed[30]);
+void getInput(char cardNumber[30]);
+void validateCard(char cardNumberReversed[30]);
 
-void main (void) {
+int main(void) {
     char cardNumber[30];
+    char cardNumberReversed[30];
+    
+    // Input do usuário
+    getInput(cardNumber);
 
-    do {
-        printf("Type your card number: ");
-        scanf("%s", cardNumber);
-        while (getchar() != '\n');
+    // Reverte o número do cartão
+    reverseCardNumber(cardNumber, cardNumberReversed);
 
-    } while (cardNumber[0] == '-');
+    // Valida o cartão
+    validateCard(cardNumberReversed);
 
-    reverseCardNumber(cardNumber);
+    return 0;
 }
 
-int reverseCardNumber (char cardNumber[30]) {
-    char cardNumberReversed[30];
+void getInput(char cardNumber[30]) {
+    do {
+        printf("Type your card number: ");
+        scanf("%29s", cardNumber);
+        while (getchar() != '\n'); 
+    } while (cardNumber[0] == '-'); // Valida que o primeiro char não é '-'
+}
+
+void reverseCardNumber(char cardNumber[30], char cardNumberReversed[30]) {
     int stringLength = strlen(cardNumber);
     int j = 0;
 
@@ -28,8 +40,8 @@ int reverseCardNumber (char cardNumber[30]) {
     }
     
     cardNumberReversed[j] = '\0';
+}
 
-    printf("Credit card number reversed: %s\n", cardNumberReversed);
+void validateCard(char cardNumberReversed[30]) {
 
-    return 0;
 }
