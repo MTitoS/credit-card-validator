@@ -52,6 +52,8 @@ void validateCard(char cardNumberReversed[30], int stringLength) {
         oneEveryTwoNumbers[j] = cardNumberReversed[i];
         //TO-DO Agora que está funcionando, não preciso mais usar essa variável
         //posso calcular diretamente nesse for os números que estou recebendo e joga-los em uma variável sum.
+        sum = sum + cardNumberReversed[i];
+        printf("%d",&sum);
     }
 
     printf("%s", oneEveryTwoNumbers);
