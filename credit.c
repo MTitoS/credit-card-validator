@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 void getInput(char cardNumber[30]);
 void reverseCardNumber(char cardNumber[30], char cardNumberReversed[30], int stringLength);
@@ -43,18 +44,20 @@ void reverseCardNumber(char cardNumber[30], char cardNumberReversed[30], int str
 }
 
 void validateCard(char cardNumberReversed[30], int stringLength) {
-    char oneEveryTwoNumbers[30];
-    int j, sum = 0;
+    char numbersToMultiply[30];
+    int sumNotMultiply, sumMultiply, j = 0;
 
-    printf("%s\n", cardNumberReversed);
-
-    for (int i = 1; i < stringLength; i += 2, j++) {
-        oneEveryTwoNumbers[j] = cardNumberReversed[i];
-        //TO-DO Agora que está funcionando, não preciso mais usar essa variável
-        //posso calcular diretamente nesse for os números que estou recebendo e joga-los em uma variável sum.
-        sum = sum + cardNumberReversed[i];
-        printf("%d",&sum);
+    for (int i = 1; i < stringLength; i += 2, j += 2) {
+        sumNotMultiply += cardNumberReversed[j] - '0';
+        
+        char calculator = (cardNumberReversed[i] - '0') * 2;
+        strcat(numbersToMultiply, calculator);
+        //numbersToMultiply += (cardNumberReversed[i] - '0') * 2;
     }
 
-    printf("%s", oneEveryTwoNumbers);
+    //sum *= 2;
+
+    printf("%s",numbersToMultiply);
 }
+
+//Teste: 4003 6000 0000 0014
