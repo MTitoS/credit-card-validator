@@ -44,20 +44,38 @@ void reverseCardNumber(char cardNumber[30], char cardNumberReversed[30], int str
 }
 
 void validateCard(char cardNumberReversed[30], int stringLength) {
-    char numbersToMultiply[30];
-    int sumNotMultiply, sumMultiply, j = 0;
+    char numbersToMultiply[30] = "";
+    int sumNotMultiply, sumMultiplied, j = 0;
 
     for (int i = 1; i < stringLength; i += 2, j += 2) {
         sumNotMultiply += cardNumberReversed[j] - '0';
         
-        char calculator = (cardNumberReversed[i] - '0') * 2;
-        strcat(numbersToMultiply, calculator);
-        //numbersToMultiply += (cardNumberReversed[i] - '0') * 2;
+        int calculated = (cardNumberReversed[i] - '0') * 2;
+
+        char temp[3];
+        sprintf(temp, "%d", calculated);
+
+        strcat(numbersToMultiply, temp);
     }
 
-    //sum *= 2;
+    for (int i = 0; i < strlen(numbersToMultiply) - 1; i++) {
+        sumMultiplied += numbersToMultiply[i] - '0';
+    }
 
-    printf("%s",numbersToMultiply);
+    int result = sumMultiplied + sumNotMultiply;
+    char temp[3];
+    
+    sprintf(temp, "%d", result);
+
+    int i = strlen(temp) - 1;
+
+    int isNumberValid = temp[i] - '0';
+
+    if (isNumberValid == 0) {
+        printf("Your card is valid.");
+    } else {
+        printf("Invalid card.");
+    }
 }
 
 //Teste: 4003 6000 0000 0014
